@@ -1,0 +1,29 @@
+letmeknow
+---------
+A tiny canary-type service to alert administrators of suspicious traffic towards an otherwise unused host.
+
+BUILD
+-----
+Install a rust toolchain (e.g. rustup update), then update dependencies if you like (e.g. cargo update) and then build with cargo:
+
+$ cargo build --release
+
+INSTALL
+-------
+# install -m 0700 -o root target/release/letmeknow /usr/local/sbin/letmeknow
+# install -m 0600 -o root sample/config.ini /etc/letmeknow/config.ini
+
+CONFIGURATION
+-------------
+Configure /etc/letmeknow/config.ini to your liking
+Avoid spaces in comma separated lists e.g.
+
+A=+423,+423,+4232
+
+RUNNING
+-------
+At present letmeknow runs as an application (not a daemon) and writes to standard error.
+
+/usr/local/sbin/letmeknow
+
+
