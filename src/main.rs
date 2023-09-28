@@ -130,7 +130,7 @@ fn thread_routine(last_log: Arc<RwLock<chrono::DateTime<chrono::Local>>>,
     };
 
     while let Ok(pack) = cap.next() {
-        let packet_time = tz.timestamp(pack.header.ts.tv_sec, 0);
+        let packet_time = tz.timestamp_opt(pack.header.ts.tv_sec, 0).unwrap();
         let should_syslog : bool;
         let should_alert : bool;
 
@@ -196,8 +196,8 @@ fn main() {
 
     // Initialize both "last log" and "last alert" timestaps with EPOCH
 
-    let last_log = Arc::new(RwLock::new(chrono::Local.timestamp(0,0)));
-    let last_alert = Arc::new(RwLock::new(chrono::Local.timestamp(0,0)));
+    let last_log = Arc::new(RwLock::new(chrono::Local.timestamp_opt(0,0).unwrap()));
+    let last_alert = Arc::new(RwLock::new(chrono::Local.timestamp_opt(0,0).unwrap()));
 
     for iface in devices {
         let b = Arc::clone(&barrier);
