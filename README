@@ -11,13 +11,14 @@ $ cargo build --release
 INSTALL
 -------
 # install -m 0700 -o root target/release/letmeknow /usr/local/sbin/letmeknow
-# install -m 0600 -o root sample/config.ini /etc/letmeknow/config.ini
+# install -D -m 0600 -o root sample/config.ini /etc/letmeknow/config.ini
+# install -m 0700 -d /var/log/letmeknow
 
 CONFIGURATION
 -------------
 Configure /etc/letmeknow/config.ini to your liking
-Avoid spaces in comma separated lists e.g.
 
+Make sure to avoid spaces in comma separated lists e.g.
 A=+423,+423,+4232
 
 RUNNING
