@@ -75,7 +75,7 @@ fn do_syslog(logmsg: &str) {
             facility: syslog::Facility::LOG_LOCAL7,
             hostname: None, // syslog fills this in automatically
             process: "letmeknow".into(),
-            pid: process::id() as i32};
+            pid: process::id()};
 
     let mut logger = syslog::unix(fmter).unwrap();
     logger.notice(logmsg).unwrap();
